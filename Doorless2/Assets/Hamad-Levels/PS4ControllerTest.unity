@@ -135,7 +135,6 @@ GameObject:
   - component: {fileID: 445475807}
   - component: {fileID: 445475806}
   - component: {fileID: 445475805}
-  - component: {fileID: 445475804}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -143,20 +142,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &445475804
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 445475803}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d3b611c3f5ec9e4bb95250d444c81b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  texts: []
-  outputs: []
 --- !u!114 &445475805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -505,6 +490,7 @@ GameObject:
   - component: {fileID: 1908341589}
   - component: {fileID: 1908341591}
   - component: {fileID: 1908341590}
+  - component: {fileID: 1908341592}
   m_Layer: 5
   m_Name: Buttons
   m_TagString: Untagged
@@ -578,8 +564,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -614,7 +600,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -327.9527, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -628,6 +614,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1908341588}
   m_CullTransparentMesh: 1
+--- !u!114 &1908341592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1908341588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d3b611c3f5ec9e4bb95250d444c81b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outputs: {fileID: 1908341590}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
