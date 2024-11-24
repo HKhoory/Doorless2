@@ -22,20 +22,26 @@ public class PS4ControllerTester : MonoBehaviour
 
     void Update()
     {
+        
+        
+            outputs.text = "Square = " + Input.GetKey(KeyCode.Joystick1Button0) + "<br>"
+            + "X = " + Input.GetKey(KeyCode.Joystick1Button1) + "<br>"
+            + "O = " + Input.GetKey(KeyCode.Joystick1Button2) + "<br>"
+            + "Triangle = " + Input.GetKey(KeyCode.Joystick1Button3) + "<br>"
+            + "L1 = " + Input.GetKey(KeyCode.Joystick1Button4) + "<br>"
+            + "R1 = " + Input.GetKey(KeyCode.Joystick1Button5) + "<br>"
+            + "L2 = " + Input.GetKey(KeyCode.Joystick1Button6) + "<br>"
+            + "R2 = " + Input.GetKey(KeyCode.Joystick1Button7) + "<br>"
+            + "Share = " + Input.GetKey(KeyCode.Joystick1Button8) + "<br>"
+            + "Start/Pause = " + Input.GetKey(KeyCode.Joystick1Button9) + "<br>"
+            + "Joystick Left Button = " + Input.GetKey(KeyCode.Joystick1Button10) + "<br>"
+            + "Joystick Right Button = " + Input.GetKey(KeyCode.Joystick1Button11) + "<br>"
+            + "PS Button = " + Input.GetKey(KeyCode.Joystick1Button12) + "<br>"
+            + "Joystick Left X = " + Input.GetAxisRaw("Horizontal") + "<br>"
+            + "Joystick Left Y = " + Input.GetAxisRaw("Vertical") + "<br>"
+            + "Joystick Right X = " + Input.GetAxisRaw("Horizontal2") + "<br>"
+            + "Joystick Right Y = " + Input.GetAxisRaw("Vertical2") + "<br>";
+        
 
-        outputs.text = "X = " + Input.GetKey(KeyCode.Joystick1Button0) + "<br>"
-        + "Square = " + Input.GetKey(KeyCode.Joystick1Button1) + "<br>"
-        + "O = " + Input.GetKey(KeyCode.Joystick1Button2) + "<br>"
-        + "Triangle = " + Input.GetKey(KeyCode.Joystick1Button3) + "<br>"
-        + "L1 = " + Input.GetKey(KeyCode.Joystick1Button4) + "<br>"
-        + "L2 = " + Input.GetKey(KeyCode.Joystick1Button5) + "<br>"
-        + "R1 = " + Input.GetKey(KeyCode.Joystick1Button6) + "<br>"
-        + "R2 = " + Input.GetKey(KeyCode.Joystick1Button7) + "<br>"
-        + "D-Up = " + Input.GetKey(KeyCode.Joystick1Button8) + "<br>"
-        + "D-Down = " + Input.GetKey(KeyCode.Joystick1Button9) + "<br>"
-        + "D-Left = " + Input.GetKey(KeyCode.Joystick1Button10) + "<br>"
-        + "D-Right = " + Input.GetKey(KeyCode.Joystick1Button11) + "<br>"
-        + " = " + Input.GetKey(KeyCode.Joystick1Button12) + "<br>";
-        Input.GetAxisRaw("Horizontal");
     }
 }
