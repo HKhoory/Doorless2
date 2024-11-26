@@ -7,6 +7,7 @@ public class PlayerMover : MonoBehaviour
 {
 
     [SerializeField] private Rigidbody _rb;
+    [SerializeField] private CharacterController _cc;
 
     [SerializeField] private float speed;
     
@@ -19,7 +20,8 @@ public class PlayerMover : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _rb.velocity = new Vector3(movementInput.x * speed, 0 , movementInput.y * speed);
+        //_rb.velocity = new Vector3(movementInput.x * speed, 0 , movementInput.y * speed);
+        _cc.Move(new Vector3(movementInput.x * speed, 0, movementInput.y * speed));
     }
 
     private void Update()
