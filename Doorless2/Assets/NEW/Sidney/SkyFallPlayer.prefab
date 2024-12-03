@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6808429797312270548}
   - component: {fileID: 6832875129522770120}
   - component: {fileID: 6069139108027088575}
+  - component: {fileID: 3160384546524900662}
   m_Layer: 6
   m_Name: SkyFallPlayer
   m_TagString: Player
@@ -48,7 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rb: {fileID: 6069139108027088575}
-  speed: 10
+  speed: 12
   movementInput: {x: 0, y: 0}
 --- !u!114 &6832875129522770120
 MonoBehaviour:
@@ -127,6 +128,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!65 &3160384546524900662
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4082320159112654358}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5518035057446169462
 GameObject:
   m_ObjectHideFlags: 0
@@ -189,7 +211,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 91286f4ed34e2594e8718eefdfbc51ac, type: 2}
+  - {fileID: 2100000, guid: 2940be4ec789e884fbd651c9692718aa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

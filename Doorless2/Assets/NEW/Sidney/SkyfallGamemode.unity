@@ -704,7 +704,7 @@ Transform:
   m_GameObject: {fileID: 1028008148}
   serializedVersion: 2
   m_LocalRotation: {x: 0.31496784, y: -0, z: -0, w: 0.94910234}
-  m_LocalPosition: {x: 3.58, y: 13.82, z: -22.4}
+  m_LocalPosition: {x: 3.58, y: 9.01, z: -19.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -885,6 +885,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1499905613}
   - component: {fileID: 1499905615}
+  - component: {fileID: 1499905616}
   m_Layer: 0
   m_Name: BlockSpawner
   m_TagString: Untagged
@@ -928,6 +929,24 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1499905616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1499905611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 699eaf09bc01681449e6706a94338a3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  redBlockPrefab: {fileID: 7805900185740342053, guid: 4b4ff18781fd40d4a82e2c9b7ae784cb, type: 3}
+  spawnInterval: 0.5
+  spawnRangeX: 10
+  spawnRangeZ: 10
+  playerBlockSpawnInterval: 1.25
+  blockHeightAbovePlayer: 20
 --- !u!1 &1553763188
 GameObject:
   m_ObjectHideFlags: 0
@@ -1125,7 +1144,7 @@ PrefabInstance:
     - target: {fileID: 2199858162008921418, guid: bba2da9e0ed2c0c4aa6b053832e7c8fc, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: c7e0869df14834344807460ab5a9ce20, type: 2}
+      objectReference: {fileID: 2100000, guid: 0c4d752d936c0c0448cf14499e74a602, type: 2}
     - target: {fileID: 2312759014106573606, guid: bba2da9e0ed2c0c4aa6b053832e7c8fc, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -1213,7 +1232,7 @@ PrefabInstance:
     - target: {fileID: 4584762271770360257, guid: bba2da9e0ed2c0c4aa6b053832e7c8fc, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: c7e0869df14834344807460ab5a9ce20, type: 2}
+      objectReference: {fileID: 2100000, guid: 0c4d752d936c0c0448cf14499e74a602, type: 2}
     - target: {fileID: 4745324409499507875, guid: bba2da9e0ed2c0c4aa6b053832e7c8fc, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -1301,7 +1320,7 @@ PrefabInstance:
     - target: {fileID: 7731761075407877596, guid: bba2da9e0ed2c0c4aa6b053832e7c8fc, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: c7e0869df14834344807460ab5a9ce20, type: 2}
+      objectReference: {fileID: 2100000, guid: 0c4d752d936c0c0448cf14499e74a602, type: 2}
     - target: {fileID: 7748473309705747202, guid: bba2da9e0ed2c0c4aa6b053832e7c8fc, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -1309,7 +1328,7 @@ PrefabInstance:
     - target: {fileID: 7978999196366304716, guid: bba2da9e0ed2c0c4aa6b053832e7c8fc, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: c7e0869df14834344807460ab5a9ce20, type: 2}
+      objectReference: {fileID: 2100000, guid: 0c4d752d936c0c0448cf14499e74a602, type: 2}
     - target: {fileID: 8225881357205248026, guid: bba2da9e0ed2c0c4aa6b053832e7c8fc, type: 3}
       propertyPath: m_Mesh
       value: 
