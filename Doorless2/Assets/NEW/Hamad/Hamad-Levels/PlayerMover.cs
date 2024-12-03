@@ -27,13 +27,8 @@ public class PlayerMover : MonoBehaviour
         //_cc.Move(new Vector3(movementInput.x * speed, 0, movementInput.y * speed));
     }
 
-    private void Update()
-    {
-        
-    }
 
-
-    public void OnMove(InputAction.CallbackContext x) => movementInput = x.ReadValue<Vector2>();
+    //public void OnMove(InputAction.CallbackContext x) => movementInput = x.ReadValue<Vector2>();
 
     public int GetPlayerIndex() { return playerIndex; }
 

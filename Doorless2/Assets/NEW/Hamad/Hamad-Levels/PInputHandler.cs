@@ -22,7 +22,7 @@ public class PInputHandler : MonoBehaviour
        
     }
 
-    public void OnMove(InputAction.CallbackContext context)
+    public void OnMove(CallbackContext context)
     {
         if(_playerMover != null)
         {
