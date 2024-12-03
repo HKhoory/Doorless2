@@ -3581,15 +3581,15 @@ PrefabInstance:
       objectReference: {fileID: 1965404449}
     - target: {fileID: 8993724234620718340, guid: bba2da9e0ed2c0c4aa6b053832e7c8fc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.6207657
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8993724234620718340, guid: bba2da9e0ed2c0c4aa6b053832e7c8fc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.28
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8993724234620718340, guid: bba2da9e0ed2c0c4aa6b053832e7c8fc, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.46105
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8993724234620718340, guid: bba2da9e0ed2c0c4aa6b053832e7c8fc, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4636,7 +4636,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2065795287}
   - component: {fileID: 2065795288}
-  - component: {fileID: 2065795286}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -4644,18 +4643,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2065795286
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2065795285}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc0bf1593dccf3144a6e5a06376ba11e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &2065795287
 Transform:
   m_ObjectHideFlags: 0
@@ -4705,7 +4692,7 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: 0}
-  m_PlayerPrefab: {fileID: 4082320159112654358, guid: c4937604f05d7954da06b0625912b224, type: 3}
+  m_PlayerPrefab: {fileID: 4082320159112654358, guid: c33c6ef742bf9a74fa6732229b165ca6, type: 3}
   m_SplitScreen: 0
   m_MaintainAspectRatioInSplitScreen: 0
   m_FixedNumberOfSplitScreens: -1
