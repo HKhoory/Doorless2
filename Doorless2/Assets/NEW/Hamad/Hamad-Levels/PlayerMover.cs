@@ -9,6 +9,8 @@ public class PlayerMover : MonoBehaviour
     [SerializeField] private Rigidbody _rb;
     //[SerializeField] private CharacterController _cc;
 
+    [SerializeField] private int playerIndex;
+
     [SerializeField] private float speed;
     
     [SerializeField] private Vector2 movementInput;
@@ -16,6 +18,7 @@ public class PlayerMover : MonoBehaviour
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
+        
     }
 
     private void FixedUpdate()
@@ -31,5 +34,12 @@ public class PlayerMover : MonoBehaviour
 
 
     public void OnMove(InputAction.CallbackContext x) => movementInput = x.ReadValue<Vector2>();
+
+    public int GetPlayerIndex() { return playerIndex; }
+
+    public void SetInputVector(Vector2 dir)
+    {
+        movementInput = dir;
+    }
 
 }
