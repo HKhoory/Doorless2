@@ -4,7 +4,17 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - RedBlock
+  - Sound4
+  - Sound5
+  - Sound1
+  - Sound3
+  - Sound2
+  - Room
+  - Coin
+  - Player1
+  - Player2
+  - Player3
+  - Player4
   layers:
   - Default
   - TransparentFX
@@ -12,7 +22,7 @@ TagManager:
   - 
   - Water
   - UI
-  - Player
+  - 
   - 
   - 
   - 
