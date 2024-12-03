@@ -20,7 +20,7 @@ public class PlayerMover : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _rb.velocity = new Vector3(movementInput.x * speed, 0 , movementInput.y * speed);
+        _rb.velocity = new Vector3(movementInput.x * speed, _rb.velocity.y , movementInput.y * speed);
         //_cc.Move(new Vector3(movementInput.x * speed, 0, movementInput.y * speed));
     }
 
