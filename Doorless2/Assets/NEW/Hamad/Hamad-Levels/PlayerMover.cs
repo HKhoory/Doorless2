@@ -37,4 +37,13 @@ public class PlayerMover : MonoBehaviour
         movementInput = dir;
     }
 
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Ghost"))
+        {
+            Destroy(gameObject);
+        }
+    }
+
 }
