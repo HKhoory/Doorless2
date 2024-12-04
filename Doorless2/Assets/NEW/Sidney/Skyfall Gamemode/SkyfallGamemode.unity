@@ -1123,10 +1123,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   redBlockPrefab: {fileID: 7805900185740342053, guid: 4b4ff18781fd40d4a82e2c9b7ae784cb, type: 3}
-  spawnInterval: 0.5
+  spawnInterval: 0.01
   spawnRangeX: 9
   spawnRangeZ: 10
-  playerBlockSpawnInterval: 1
+  playerBlockSpawnInterval: 0.1
   blockHeightAbovePlayer: 20
 --- !u!1 &1553763188
 GameObject:

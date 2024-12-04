@@ -48,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rb: {fileID: 6069139108027088575}
   playerIndex: 0
-  speed: 5
+  speed: 8
   movementInput: {x: 0, y: 0}
 --- !u!54 &6069139108027088575
 Rigidbody:

@@ -23,18 +23,21 @@ public class GhostBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
 
+        if (targetPlayer == null) timer = 0f;
 
         if (timer <= 0)
         {
+            targetPlayer = players[i];
+
             i = Random.Range(0, players.Length);
             //RandomChase();
             timer = timerStore;
         }
-        transform.position = Vector3.MoveTowards(transform.position, players[i].transform.position, speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, targetPlayer.transform.position, speed * Time.deltaTime);
 
         timer -= Time.deltaTime;
+
 
 
     }

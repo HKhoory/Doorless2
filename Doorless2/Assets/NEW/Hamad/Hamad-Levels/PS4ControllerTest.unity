@@ -3883,7 +3883,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6808429797312270548, guid: c4937604f05d7954da06b0625912b224, type: 3}
       propertyPath: speed
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6808429797312270548, guid: c4937604f05d7954da06b0625912b224, type: 3}
       propertyPath: playerIndex
@@ -4528,7 +4528,7 @@ GameObject:
   - component: {fileID: 1998326018}
   m_Layer: 0
   m_Name: Sphere
-  m_TagString: Untagged
+  m_TagString: Ghost
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4669,7 +4669,7 @@ MonoBehaviour:
   - {fileID: 1485631779}
   - {fileID: 639985305}
   - {fileID: 2124481803}
-  speed: 3
+  speed: 6
   timer: 5
   i: 0
 --- !u!43 &2099407432
