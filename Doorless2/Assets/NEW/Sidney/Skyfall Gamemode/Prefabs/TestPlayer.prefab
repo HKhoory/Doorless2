@@ -10,11 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5056508900147035878}
   - component: {fileID: 6808429797312270548}
-  - component: {fileID: 6832875129522770120}
   - component: {fileID: 6069139108027088575}
-  - component: {fileID: 3160384546524900662}
-  m_Layer: 6
-  m_Name: SkyFallPlayer
+  - component: {fileID: -9213416424439156057}
+  m_Layer: 0
+  m_Name: TestPlayer
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49,58 +48,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rb: {fileID: 6069139108027088575}
-  speed: 12
+  playerIndex: 0
+  speed: 5
   movementInput: {x: 0, y: 0}
---- !u!114 &6832875129522770120
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4082320159112654358}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: ddbaf427bcf130545b869f72e1b5fc09, type: 3}
-  m_NotificationBehavior: 2
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6808429797312270548}
-        m_TargetAssemblyTypeName: PlayerMover, Assembly-CSharp
-        m_MethodName: OnMove
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 82fdc19c-399e-4135-8be4-4d152710c4fc
-    m_ActionName: PS4Controller/Move
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 90a68f52-573c-424f-af92-a619f5f24933
-    m_ActionName: PS4Controller/Tag/Grab
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: PS4Controller
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!54 &6069139108027088575
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -128,8 +78,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!65 &3160384546524900662
-BoxCollider:
+--- !u!136 &-9213416424439156057
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -143,11 +93,13 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5518035057446169462
 GameObject:
@@ -161,7 +113,7 @@ GameObject:
   - component: {fileID: 2545282455343613807}
   - component: {fileID: 2065363873651888878}
   - component: {fileID: 2509047533438314362}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -211,7 +163,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2940be4ec789e884fbd651c9692718aa, type: 2}
+  - {fileID: 2100000, guid: 91286f4ed34e2594e8718eefdfbc51ac, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
