@@ -1691,6 +1691,11 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &639985305 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4082320159112654358, guid: c4937604f05d7954da06b0625912b224, type: 3}
+  m_PrefabInstance: {fileID: 309483199}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &723850787
 Mesh:
   m_ObjectHideFlags: 0
@@ -2351,6 +2356,11 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &968790637 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4082320159112654358, guid: c4937604f05d7954da06b0625912b224, type: 3}
+  m_PrefabInstance: {fileID: 1573365507}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1123894287
 GameObject:
   m_ObjectHideFlags: 0
@@ -3574,6 +3584,11 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &1485631779 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4082320159112654358, guid: c4937604f05d7954da06b0625912b224, type: 3}
+  m_PrefabInstance: {fileID: 1560947676}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1533508922
 Mesh:
   m_ObjectHideFlags: 0
@@ -4613,9 +4628,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2026832263}
+  - component: {fileID: 2026832264}
   m_Layer: 0
   m_Name: Ghost
-  m_TagString: Untagged
+  m_TagString: Ghost
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4636,6 +4652,26 @@ Transform:
   - {fileID: 1998326017}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2026832264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2026832262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8ae1e84e7d399d4f96291872c356d46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  players:
+  - {fileID: 968790637}
+  - {fileID: 1485631779}
+  - {fileID: 639985305}
+  - {fileID: 2124481803}
+  speed: 3
+  timer: 5
+  i: 0
 --- !u!43 &2099407432
 Mesh:
   m_ObjectHideFlags: 0
@@ -4966,6 +5002,11 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &2124481803 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4082320159112654358, guid: c4937604f05d7954da06b0625912b224, type: 3}
+  m_PrefabInstance: {fileID: 427596536}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &2145322464
 Mesh:
   m_ObjectHideFlags: 0
