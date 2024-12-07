@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;  
 using System.Collections.Generic;
 
 public class GameController : MonoBehaviour
@@ -7,7 +7,7 @@ public class GameController : MonoBehaviour
     public List<PlayerMover> players = new List<PlayerMover>();
     public GameObject chaserIndicatorPrefab; // Prefab for chaser indicator (e.g., above their head)
     public GameObject chasePopup; // UI popup to show "You are the Chaser" or "Press X to Tag"
-    public Text timerText; // UI text to display the countdown timer
+    public TextMeshProUGUI timerText; // UI TextMeshPro reference to display the countdown timer
     public float gameDuration = 150f; // 2:30 minutes in seconds
 
     [HideInInspector] public PlayerMover chaser;
@@ -26,6 +26,7 @@ public class GameController : MonoBehaviour
         if (!gameRunning) return;
 
         timer -= Time.deltaTime;
+        // Display the timer using TextMeshPro
         timerText.text = $"{Mathf.FloorToInt(timer / 60)}:{Mathf.FloorToInt(timer % 60):00}";
 
         if (timer <= 0)
@@ -44,11 +45,13 @@ public class GameController : MonoBehaviour
             if (player == chaser)
             {
                 // Mark player as Chaser
-                Instantiate(chaserIndicatorPrefab, player.transform);
+                Vector3 indicatorPosition = player.transform.position + new Vector3(0, 1.5f, 0); // Adjust 1.5f for height
+                Instantiate(chaserIndicatorPrefab, indicatorPosition, Quaternion.identity, player.transform);
                 chasePopup.SetActive(true); // Display popup "You are the Chaser"
             }
         }
     }
+
 
     private void StartGame()
     {

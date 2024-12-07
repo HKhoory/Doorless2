@@ -1,13 +1,17 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ChaserController : MonoBehaviour
 {
     public GameController gameController;
-    public KeyCode tagKey = KeyCode.X;
 
     private PlayerMover targetPlayer;
     private bool isTagging = false;
+    public InputActionReference tagAction; // Correct Type
+
+    private void OnEnable() => tagAction.action.Enable();
+    private void OnDisable() => tagAction.action.Disable();
 
     private void OnTriggerEnter(Collider other)
     {
@@ -35,7 +39,7 @@ public class ChaserController : MonoBehaviour
         {
             tagTimer -= Time.deltaTime;
 
-            if (Input.GetKeyDown(tagKey))
+            if (tagAction.action.triggered) // Detect input from any bound device
             {
                 // Tag successfully
                 gameController.EliminatePlayer(player);
