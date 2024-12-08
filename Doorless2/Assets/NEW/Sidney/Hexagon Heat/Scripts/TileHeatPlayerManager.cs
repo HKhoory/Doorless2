@@ -1,32 +1,66 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro; // Include if you're using TextMeshPro for UI text
 
 public class TileHeatPlayerManager : MonoBehaviour
 {
     public GameObject[] players; // Reference to player game objects
+    public TMP_Text winMessageText; // UI element to display win message
+
+    private void Start()
+    {
+        winMessageText.gameObject.SetActive(false);
+    }
 
     void Update()
     {
         int alivePlayers = 0;
+        int lastPlayerIndex = -1; // Track the last remaining player index
 
-        foreach (GameObject player in players)
+        // Check how many players are still alive and track the last player's index
+        for (int i = 0; i < players.Length; i++)
         {
-            if (player != null) // Check if player is still alive
+            if (players[i] != null) // If player is still alive
+            {
                 alivePlayers++;
+                lastPlayerIndex = i; // Update the index of the last remaining player
+            }
         }
 
+        // If only one player is left, stop the game and display the win message
         if (alivePlayers <= 1)
         {
-            // Stop the game or trigger a game over
-            StopGame();
+            StopGame(lastPlayerIndex); // Pass the index of the last player
         }
     }
 
-    void StopGame()
+    void StopGame(int lastPlayerIndex)
     {
-        // Code to stop the game, show game over, etc.
+        // Stop the game and freeze time
         Debug.Log("Game Over!");
-        Time.timeScale = 0; // Freeze the game time (pause)
+        winMessageText.gameObject.SetActive(true);
+
+        // Display the win message based on the last player's index
+        switch (lastPlayerIndex)
+        {
+            case 0:
+                winMessageText.text = "Player 1 Wins!";
+                break;
+            case 1:
+                winMessageText.text = "Player 2 Wins!";
+                break;
+            case 2:
+                winMessageText.text = "Player 3 Wins!";
+                break;
+            case 3:
+                winMessageText.text = "Player 4 Wins!";
+                break;
+            default:
+                winMessageText.text = "No Winner!";
+                break;
+        }
+
+        Time.timeScale = 0; // Pause the game
     }
 }

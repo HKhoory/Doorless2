@@ -14,7 +14,8 @@ public class TileHeatManager : MonoBehaviour
     // UI elements
     public TMP_Text dropIndicatorText;
     public Image colorIndicatorImage;
-    public TMP_Text countdownText; // Countdown text
+    public TMP_Text countDownText; // Countdown text
+    public Image countDownImage; // Countdown Image
     public TMP_Text roundText; // Round text
 
     // Time delays
@@ -27,6 +28,10 @@ public class TileHeatManager : MonoBehaviour
     private void Start()
     {
         StartCoroutine(GameStartCountdown());
+
+        dropIndicatorText.gameObject.SetActive(false);
+        colorIndicatorImage.gameObject.SetActive(false);
+        roundText.gameObject.SetActive(false);
     }
 
     IEnumerator GameStartCountdown()
@@ -34,16 +39,21 @@ public class TileHeatManager : MonoBehaviour
         int countdown = 5;
         while (countdown > 0)
         {
-            countdownText.text = countdown.ToString();
+            countDownText.text = countdown.ToString();
             yield return new WaitForSeconds(1f);
             countdown--;
         }
 
-        countdownText.text = "Go!";
+        countDownText.text = "Go!";
         yield return new WaitForSeconds(1f);
 
         // Hide the countdown text after it's finished
-        countdownText.gameObject.SetActive(false);
+        countDownText.gameObject.SetActive(false);
+        countDownImage.gameObject.SetActive(false);
+
+        dropIndicatorText.gameObject.SetActive(true);
+        colorIndicatorImage.gameObject.SetActive(true);
+        roundText.gameObject.SetActive(true);
 
         // Start the game loop after countdown
         StartCoroutine(GameLoop());
