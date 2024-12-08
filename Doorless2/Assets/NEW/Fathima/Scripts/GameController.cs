@@ -14,12 +14,32 @@ public class GameController : MonoBehaviour
 
     private float timer;
     private bool gameRunning = false;
+    [Header("Map Settings")]
+    public GameObject mapPrefab;  // Assign the map prefab in the Inspector
+    public Vector3 shrinkAmount = new Vector3(1f, 0, 1f);  // Amount to shrink on each interval
+    public Vector3 minSize = new Vector3(5f, 0, 5f);  // Minimum map size
 
     private void Start()
     {
         AssignRoles();
         StartGame();
+
+        // Start shrinking map every 30 seconds
+        InvokeRepeating(nameof(ShrinkMap), 30f, 30f);
     }
+
+    private void ShrinkMap()
+    {
+        if (mapPrefab.transform.localScale.x > minSize.x && mapPrefab.transform.localScale.z > minSize.z)
+        {
+            mapPrefab.transform.localScale -= shrinkAmount;
+        }
+        else
+        {
+            CancelInvoke(nameof(ShrinkMap));  // Stop shrinking when minimum size is reached
+        }
+    }
+
 
     private void Update()
     {
@@ -44,13 +64,25 @@ public class GameController : MonoBehaviour
         {
             if (player == chaser)
             {
-                // Mark player as Chaser
-                Vector3 indicatorPosition = player.transform.position + new Vector3(0, 1.5f, 0); // Adjust 1.5f for height
+                // Boost the chaser's speed using reflection
+                player.GetType().GetField("speed", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
+                      ?.SetValue(player, 6.5f);
+
+                // Show chaser indicator
+                Vector3 indicatorPosition = player.transform.position + new Vector3(0, 1.5f, 0);
                 Instantiate(chaserIndicatorPrefab, indicatorPosition, Quaternion.identity, player.transform);
-                chasePopup.SetActive(true); // Display popup "You are the Chaser"
+
+                chasePopup.SetActive(true); // "You are the Chaser" popup
+            }
+            else
+            {
+                // Reset speed of other players
+                player.GetType().GetField("speed", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
+                      ?.SetValue(player, 5f);
             }
         }
     }
+
 
 
     private void StartGame()
