@@ -1,7 +1,7 @@
 using UnityEngine;
-using UnityEngine.UI;  // For Image component
+using UnityEngine.UI;
 using TMPro;
-using System.Collections;
+using System.Collections; // Make sure to include TMPro if you're using TextMeshPro
 
 public class TileHeatManager : MonoBehaviour
 {
@@ -11,18 +11,41 @@ public class TileHeatManager : MonoBehaviour
     public GameObject[] grayTiles;
     public GameObject[] cyanTiles;
 
-    // UI element to indicate which tiles will drop
+    // UI elements
     public TMP_Text dropIndicatorText;
-    public Image colorIndicatorImage;  // Add this to reference the color indicator image
+    public Image colorIndicatorImage;
+    public TMP_Text countdownText; // Countdown text
+    public TMP_Text roundText; // Round text
 
     // Time delays
-    public float indicationTime = 3f; // Time before tiles drop
-    public float resetTime = 2f; // Time before tiles reset
+    public float indicationTime = 3f;
+    public float resetTime = 2f;
 
     private GameObject[] currentDroppingTiles;
+    private int round = 1;
 
     private void Start()
     {
+        StartCoroutine(GameStartCountdown());
+    }
+
+    IEnumerator GameStartCountdown()
+    {
+        int countdown = 5;
+        while (countdown > 0)
+        {
+            countdownText.text = countdown.ToString();
+            yield return new WaitForSeconds(1f);
+            countdown--;
+        }
+
+        countdownText.text = "Go!";
+        yield return new WaitForSeconds(1f);
+
+        // Hide the countdown text after it's finished
+        countdownText.gameObject.SetActive(false);
+
+        // Start the game loop after countdown
         StartCoroutine(GameLoop());
     }
 
@@ -47,12 +70,19 @@ public class TileHeatManager : MonoBehaviour
 
             // Step 6: Reset the tiles
             ResetTiles();
+
+            // Update round number
+            round++;
+            roundText.text = $"Round: {round}";
+
+            // Make the game harder by decreasing the time it takes for tiles to drop
+            indicationTime = Mathf.Max(1f, indicationTime - 0.2f); // Decrease time, but keep it above 1 second
         }
     }
 
     GameObject[] ChooseRandomTileGroup()
     {
-        int randomGroup = Random.Range(0, 4); // 4 groups now
+        int randomGroup = Random.Range(0, 4);
 
         if (randomGroup == 0)
             return redTiles;
@@ -72,22 +102,20 @@ public class TileHeatManager : MonoBehaviour
 
         dropIndicatorText.text = $"Tiles Dropping: {color}";
 
-        // Update the image color based on the tile group
         if (currentDroppingTiles == redTiles)
-            colorIndicatorImage.color = Color.red; // Red
+            colorIndicatorImage.color = Color.red;
         else if (currentDroppingTiles == orangeTiles)
-            colorIndicatorImage.color = new Color(1f, 0.647f, 0f); // Orange (RGB)
+            colorIndicatorImage.color = new Color(1f, 0.647f, 0f); // Orange RGB
         else if (currentDroppingTiles == grayTiles)
-            colorIndicatorImage.color = Color.gray; // Gray
+            colorIndicatorImage.color = Color.gray;
         else
-            colorIndicatorImage.color = Color.cyan; // Cyan
+            colorIndicatorImage.color = Color.cyan;
     }
 
     void DropTiles()
     {
         foreach (GameObject tile in currentDroppingTiles)
         {
-            // Disable the tile's collider and renderer
             if (tile.TryGetComponent<Collider>(out Collider col))
                 col.enabled = false;
             if (tile.TryGetComponent<Renderer>(out Renderer rend))
@@ -99,15 +127,13 @@ public class TileHeatManager : MonoBehaviour
     {
         foreach (GameObject tile in currentDroppingTiles)
         {
-            // Enable the tile's collider and renderer
             if (tile.TryGetComponent<Collider>(out Collider col))
                 col.enabled = true;
             if (tile.TryGetComponent<Renderer>(out Renderer rend))
                 rend.enabled = true;
         }
 
-        // Clear UI indicator
         dropIndicatorText.text = "";
-        colorIndicatorImage.color = Color.white; // Reset color to default
+        colorIndicatorImage.color = Color.white;
     }
 }
