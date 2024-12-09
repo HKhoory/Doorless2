@@ -14,7 +14,7 @@ public class PInputHandler : MonoBehaviour
 
     private void Awake()
     {
-        
+        DontDestroyOnLoad(gameObject);
         playerInput = GetComponent<PlayerInput>();
         var playerMovers = FindObjectsOfType<PlayerMover>();
         var index = playerInput.playerIndex;
