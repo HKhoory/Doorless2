@@ -8,6 +8,7 @@ public class TeleportToScene : MonoBehaviour
 
     [SerializeField] private int playerCount;
     [SerializeField] private int gameIndex;
+    [SerializeField] private GameObject particleSystem;
 
     [SerializeField] private float timer;
     private float timerStore;
@@ -15,6 +16,7 @@ public class TeleportToScene : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        particleSystem.SetActive(false);
         playerCount = 0;
         timerStore = timer;
     }
@@ -25,10 +27,12 @@ public class TeleportToScene : MonoBehaviour
         if (playerCount >= 1)
         {
             timer -= Time.deltaTime;
+            particleSystem.SetActive(true);
         }
         else
         {
             timer = timerStore;
+            particleSystem.SetActive(false);
         }
         if (timer <= 0)
         {
