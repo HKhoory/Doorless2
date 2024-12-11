@@ -5,6 +5,7 @@ using UnityEngine;
 public class GhostBehavior : MonoBehaviour
 {
 
+    [SerializeField] private float timerTillStart;
     [SerializeField] private GameObject[] players;
     [SerializeField] private float speed;
     [SerializeField] private float timer;
@@ -23,22 +24,30 @@ public class GhostBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (targetPlayer == null) timer = 0f;
-
-        if (timer <= 0)
+        if (timerTillStart > 0f)
         {
-            targetPlayer = players[i];
 
-            i = Random.Range(0, players.Length);
-            //RandomChase();
-            timer = timerStore;
+            timerTillStart -= Time.deltaTime;
         }
-        transform.position = Vector3.MoveTowards(transform.position, targetPlayer.transform.position, speed * Time.deltaTime);
+        else
+        {
 
-        timer -= Time.deltaTime;
+            if (targetPlayer == null) timer = 0f;
 
+            if (timer <= 0)
+            {
+                i = Random.Range(0, players.Length);
+                targetPlayer = players[i];
 
+                
+                //RandomChase();
+                timer = timerStore;
+            }
+            transform.position = Vector3.MoveTowards(transform.position, targetPlayer.transform.position, speed * Time.deltaTime);
+
+            timer -= Time.deltaTime;
+
+        }
 
     }
 
