@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class BlockSpawner : MonoBehaviour
 {
@@ -130,7 +131,6 @@ public class BlockSpawner : MonoBehaviour
     private void StopGame()
     {
         gameStarted = false; // Stop the game
-        Time.timeScale = 0; // Pause the game
 
         if (players.Count == 1)
         {
@@ -144,5 +144,7 @@ public class BlockSpawner : MonoBehaviour
         }
 
         winMessageText.gameObject.SetActive(true);
+
+        SceneManager.LoadScene(0);
     }
 }

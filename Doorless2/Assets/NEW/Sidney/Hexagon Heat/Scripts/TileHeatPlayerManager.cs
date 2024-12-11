@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro; // Include if you're using TextMeshPro for UI text
+using UnityEngine.SceneManagement;
 
 public class TileHeatPlayerManager : MonoBehaviour
 {
@@ -41,6 +42,9 @@ public class TileHeatPlayerManager : MonoBehaviour
         Debug.Log("Game Over!");
         winMessageText.gameObject.SetActive(true);
 
+        SceneManager.LoadScene(0);
+
+
         // Display the win message based on the last player's index
         switch (lastPlayerIndex)
         {
@@ -60,7 +64,5 @@ public class TileHeatPlayerManager : MonoBehaviour
                 winMessageText.text = "No Winner!";
                 break;
         }
-
-        Time.timeScale = 0; // Pause the game
     }
 }

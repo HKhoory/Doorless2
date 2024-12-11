@@ -41,6 +41,7 @@ public class ChaserController : MonoBehaviour
 
             if (tagAction.action.triggered) // Detect input from any bound device
             {
+                Debug.Log("button pressed");
                 // Tag successfully
                 gameController.EliminatePlayer(player);
                 break;

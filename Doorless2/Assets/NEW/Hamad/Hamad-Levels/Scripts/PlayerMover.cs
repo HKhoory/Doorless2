@@ -37,6 +37,11 @@ public class PlayerMover : MonoBehaviour
         movementInput = dir;
     }
 
+    //public void SetTagButton(Button dir)
+    //{
+    //    movementInput = dir;
+    //}
+
 
     private void OnTriggerEnter(Collider other)
     {

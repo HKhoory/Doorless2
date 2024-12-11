@@ -11,5 +11,14 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/NEW/Hamad/Hamad-Levels/Scenes/GhostChase.unity
     guid: 052cf27f176086344838dd351a458d94
+  - enabled: 1
+    path: Assets/NEW/Fathima/Scene/ChaseGameMode.unity
+    guid: 6d327f60ec271fd48b2e0f1ea82f2e3b
+  - enabled: 1
+    path: Assets/NEW/Sidney/Hexagon Heat/HeagonHeatGamemode.unity
+    guid: 683b4e4da7225714aa7ab01d895e6584
+  - enabled: 1
+    path: Assets/NEW/Sidney/Skyfall Gamemode/SkyfallGamemode.unity
+    guid: 9d4030af1e3c7d444bde4f4c41021f85
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: bfc2c87363680ec44993f20598cd4b92, type: 2}
