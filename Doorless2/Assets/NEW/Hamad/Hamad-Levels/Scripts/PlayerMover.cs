@@ -11,7 +11,7 @@ public class PlayerMover : MonoBehaviour
 
     [SerializeField] private int playerIndex;
 
-    [SerializeField] private float speed;
+    [SerializeField] public float speed;
     
     [SerializeField] private Vector2 movementInput;
 

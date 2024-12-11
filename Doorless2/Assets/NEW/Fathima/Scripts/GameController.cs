@@ -1,20 +1,35 @@
-using UnityEngine;
-using TMPro;  
 using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.InputSystem;
+using TMPro;
 
 public class GameController : MonoBehaviour
 {
     public List<PlayerMover> players = new List<PlayerMover>();
-    public GameObject chaserIndicatorPrefab; // Prefab for the indicator
-    public GameObject chasePopup;            // Popup UI panel
-    public TMP_Text popupText;               // Text inside the popup
-    public TMP_Text timerText;               // Timer display
-    public float gameDuration = 150f;        // 2:30 minutes
+    public GameObject chaserIndicatorPrefab;
+    public GameObject chasePopup; // Popup for chaser announcement
+    public GameObject tagPopup; // Popup for tagging announcement
+    public GameObject winPopup; // Popup for endgame results
+    public TMP_Text timerText; // Timer text
+    public TMP_Text tagPopupText; // Tagging popup text
+    public TMP_Text winPopupText; // Endgame popup text
 
-    [HideInInspector] public PlayerMover chaser;
+    public float gameDuration = 150f; // 2:30 minutes
+    public float tagTimeWindow = 2f; // Time window for tagging
+    public float chaserSpeedBoost = 2f;
 
+    public PlayerMover chaser;
     private float timer;
     private bool gameRunning = false;
+    private bool isTagging = false;
+
+    // Check if the current game is running
+    public bool IsGameRunning() => gameRunning;
+
+    // Check if a player is the chaser
+    public bool IsChaser(GameObject player) => chaser != null && chaser.gameObject == player;
+
+   
 
     private void Start()
     {
@@ -26,98 +41,91 @@ public class GameController : MonoBehaviour
     {
         if (!gameRunning) return;
 
-        // Timer Countdown
+        // Update Timer
         timer -= Time.deltaTime;
-        timerText.text = $"Time Left: {Mathf.FloorToInt(timer / 60)}:{Mathf.FloorToInt(timer % 60):00}";
+        int minutes = Mathf.FloorToInt(timer / 60);
+        int seconds = Mathf.FloorToInt(timer % 60);
+        timerText.text = $"{minutes}:{seconds:00}";
 
+        // Timer End Logic
         if (timer <= 0)
         {
+            timer = 0; // Clamp to 0
             EndGame();
         }
     }
 
-    /// <summary>
-    /// Assigns the chaser based on a random player index.
-    /// </summary>
     private void AssignRoles()
     {
-        if (players.Count == 0)
-        {
-            Debug.LogError("No players found! Please assign players to the GameController.");
-            return;
-        }
-
-        // Randomly choose the chaser
         int randomIndex = Random.Range(0, players.Count);
         chaser = players[randomIndex];
 
-        foreach (var player in players)
-        {
-            if (player == chaser)
-            {
-                // Assign chaser speed boost
-                player.GetType().GetField("speed", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
-                    ?.SetValue(player, 6.5f);
+        // Set Chaser Indicator
+        Instantiate(chaserIndicatorPrefab, chaser.transform.position + Vector3.up * 2, Quaternion.identity, chaser.transform);
 
-                // Spawn chaser indicator slightly above player
-                Vector3 indicatorPosition = player.transform.position + new Vector3(0, 1.5f, 0);
-                Instantiate(chaserIndicatorPrefab, indicatorPosition, Quaternion.identity, player.transform);
+        // Adjust Chaser Speed
+        chaser.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        chaser.GetComponent<PlayerMover>().SetInputVector(Vector2.zero); // Reset input
+        chaser.speed += chaserSpeedBoost;
 
-                // Show popup text for the chaser
-                popupText.text = $"Player {player.GetPlayerIndex() + 1} is the Chaser!";
-                chasePopup.SetActive(true);
-            }
-            else
-            {
-                // Reset other players' speed
-                player.GetType().GetField("speed", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
-                    ?.SetValue(player, 5f);
-            }
-        }
-
-        // Hide popup after 3 seconds
-        Invoke(nameof(HidePopup), 3f);
+        // Display Popup
+        chasePopup.SetActive(true);
+        Invoke(nameof(HideChasePopup), 2f);
     }
 
-    /// <summary>
-    /// Starts the game and the timer countdown.
-    /// </summary>
+    private void HideChasePopup() => chasePopup.SetActive(false);
+
     private void StartGame()
     {
         timer = gameDuration;
         gameRunning = true;
     }
 
-    /// <summary>
-    /// Ends the game based on remaining players.
-    /// </summary>
     private void EndGame()
     {
         gameRunning = false;
-        chasePopup.SetActive(false);
 
-        int remainingPlayers = players.Count - 1;  // Exclude the chaser
+        // Determine Winner
+        int remainingPlayers = players.Count - 1; // Exclude chaser
         if (remainingPlayers > 0)
         {
-            Debug.Log("Team wins!");
+            winPopupText.text = "Players Win!";
         }
         else
         {
-            Debug.Log("Chaser wins!");
+            winPopupText.text = "Chaser Wins!";
         }
+
+        winPopup.SetActive(true);
     }
 
-    /// <summary>
-    /// Hides the popup after displaying the chaser announcement.
-    /// </summary>
-    private void HidePopup()
+    public void OnPlayerCollision(PlayerMover player)
     {
-        chasePopup.SetActive(false);
+        if (!gameRunning || isTagging || player == chaser) return;
+
+        isTagging = true;
+
+        // Show tag popup
+        tagPopup.SetActive(true);
+        tagPopupText.text = $"Player {player.GetPlayerIndex()} has been tagged!";
+
+        // Wait for the tagging window
+        Invoke(nameof(CompleteTagging), tagTimeWindow);
+
+        // Disable Player Movement
+        player.GetComponent<PlayerInput>().enabled = false;
+        chaser.GetComponent<PlayerInput>().enabled = false;
     }
 
-    /// <summary>
-    /// Removes a player from the game.
-    /// </summary>
+    private void CompleteTagging()
+    {
+        tagPopup.SetActive(false);
+
+        if (chaser != null) chaser.GetComponent<PlayerInput>().enabled = true;
+
+        isTagging = false;
+    }
+
     public void EliminatePlayer(PlayerMover player)
     {
         if (players.Contains(player))
