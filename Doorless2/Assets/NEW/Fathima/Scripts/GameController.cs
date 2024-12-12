@@ -2,9 +2,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
+using System.Collections;
 
 public class GameController : MonoBehaviour
 {
+    [Header("Input Settings")]
+    public InputActionReference tagActionReference;  // Reference for the "Tag" action
     public List<PlayerMover> players = new List<PlayerMover>();
     public GameObject chaserIndicatorPrefab;
     public GameObject chasePopup; // Popup for chaser announcement
@@ -13,6 +16,7 @@ public class GameController : MonoBehaviour
     public TMP_Text timerText; // Timer text
     public TMP_Text tagPopupText; // Tagging popup text
     public TMP_Text winPopupText; // Endgame popup text
+    public TMP_Text chasePopupText;
 
     public float gameDuration = 150f; // 2:30 minutes
     public float tagTimeWindow = 2f; // Time window for tagging
@@ -70,7 +74,8 @@ public class GameController : MonoBehaviour
 
         // Display Popup
         chasePopup.SetActive(true);
-        Invoke(nameof(HideChasePopup), 2f);
+        chasePopupText.text = $"Player {chaser.GetPlayerIndex()} is the Chaser!";
+        Invoke(nameof(HideChasePopup), 3f);
     }
 
     private void HideChasePopup() => chasePopup.SetActive(false);
@@ -105,16 +110,99 @@ public class GameController : MonoBehaviour
 
         isTagging = true;
 
-        // Show tag popup
+        // Show "Press X to Tag" Popup
         tagPopup.SetActive(true);
-        tagPopupText.text = $"Player {player.GetPlayerIndex()} has been tagged!";
+        tagPopupText.text = "Press X to Tag!";
 
-        // Wait for the tagging window
-        Invoke(nameof(CompleteTagging), tagTimeWindow);
+        // Store the collided player temporarily
+        StartCoroutine(HandleTagging(player));
+    }
+    private IEnumerator HandleTagging(PlayerMover player)
+    {
+        // Freeze Both Players
+        DisablePlayerMovement(chaser, player);
 
-        // Disable Player Movement
-        player.GetComponent<PlayerInput>().enabled = false;
-        chaser.GetComponent<PlayerInput>().enabled = false;
+        float elapsedTime = 0f;
+        bool isTagged = false;
+
+        while (elapsedTime < tagTimeWindow)
+        {
+            elapsedTime += Time.deltaTime;
+
+            // Check if the Chaser Presses X
+            if (tagActionReference.action.WasPerformedThisFrame())
+            {
+                isTagged = true;
+                break;
+            }
+            yield return null;
+        }
+
+        // Hide "Press X" Popup After 2 Seconds
+        tagPopup.SetActive(false);
+
+        if (isTagged)
+        {
+            // Update Tag Popup for Successful Tag
+            tagPopup.SetActive(true);
+            tagPopupText.text = $"Player {player.GetPlayerIndex()} has been tagged!";
+
+            // Eliminate Player After Delay
+            EliminatePlayer(player);
+        }
+
+        // Unfreeze Both Players After Tagging Process
+        EnablePlayerMovement(chaser, player);
+
+        // Hide Tag Popup After 2 Seconds
+        yield return new WaitForSeconds(2f);
+        tagPopup.SetActive(false);
+
+        isTagging = false;
+    }
+
+    // Helper Method to Disable Player Movement
+    private void DisablePlayerMovement(params PlayerMover[] players)
+    {
+        foreach (var p in players)
+        {
+            var input = p.GetComponent<PlayerInput>();
+            if (input != null)
+            {
+                input.enabled = false;
+            }
+            else
+            {
+                Debug.LogWarning($"Player {p.name} is missing PlayerInput!");
+            }
+        }
+    }
+
+    // Helper Method to Enable Player Movement
+    private void EnablePlayerMovement(params PlayerMover[] players)
+    {
+        foreach (var p in players)
+        {
+            var input = p.GetComponent<PlayerInput>();
+            if (input != null)
+            {
+                input.enabled = true;
+            }
+            else
+            {
+                Debug.LogWarning($"Player {p.name} is missing PlayerInput!");
+            }
+        }
+    }
+
+    // Eliminate the Tagged Player
+    public void EliminatePlayer(PlayerMover player)
+    {
+        if (players.Contains(player))
+        {
+            players.Remove(player);
+            Destroy(player.gameObject);
+        }
     }
 
     private void CompleteTagging()
@@ -124,14 +212,5 @@ public class GameController : MonoBehaviour
         if (chaser != null) chaser.GetComponent<PlayerInput>().enabled = true;
 
         isTagging = false;
-    }
-
-    public void EliminatePlayer(PlayerMover player)
-    {
-        if (players.Contains(player))
-        {
-            players.Remove(player);
-            Destroy(player.gameObject);
-        }
     }
 }

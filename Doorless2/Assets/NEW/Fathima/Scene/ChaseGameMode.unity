@@ -2122,7 +2122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameController: {fileID: 826749304}
-  tagAction: {fileID: 4961556064756564795, guid: 6efac3502f00f14428358fb47c7313f0, type: 3}
+  tagAction: {fileID: 981456752165362407, guid: ddbaf427bcf130545b869f72e1b5fc09, type: 3}
 --- !u!114 &826749304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2135,6 +2135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c089d5a460c66684e97e8221bbe893dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tagActionReference: {fileID: 981456752165362407, guid: ddbaf427bcf130545b869f72e1b5fc09, type: 3}
   players:
   - {fileID: 8068655543138670599}
   - {fileID: 2142653345}
@@ -2142,11 +2143,12 @@ MonoBehaviour:
   - {fileID: 1508023621}
   chaserIndicatorPrefab: {fileID: 6131470861048848738, guid: 9098dda393ab85842940b95bc1f2259d, type: 3}
   chasePopup: {fileID: 288661895}
-  tagPopup: {fileID: 0}
-  winPopup: {fileID: 0}
+  tagPopup: {fileID: 1180479942}
+  winPopup: {fileID: 879674729}
   timerText: {fileID: 885006771}
-  tagPopupText: {fileID: 0}
-  winPopupText: {fileID: 0}
+  tagPopupText: {fileID: 1829161463}
+  winPopupText: {fileID: 1578324854}
+  chasePopupText: {fileID: 1877858421}
   gameDuration: 150
   tagTimeWindow: 2
   chaserSpeedBoost: 2
@@ -2168,7 +2170,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &879674730
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3528,6 +3530,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8448209047033118724, guid: a305f6feb182a8440b8097f76057bd00, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1387568609}
+    - targetCorrespondingSourceObject: {fileID: 8448209047033118724, guid: a305f6feb182a8440b8097f76057bd00, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1387568610}
+    - targetCorrespondingSourceObject: {fileID: 8448209047033118724, guid: a305f6feb182a8440b8097f76057bd00, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1387568613}
   m_SourcePrefab: {fileID: 100100000, guid: a305f6feb182a8440b8097f76057bd00, type: 3}
 --- !u!4 &1387568605 stripped
 Transform:
@@ -3573,6 +3581,56 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1387568610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1387568606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc28274e4efcdbc4099dbd6a6b36a11b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1387568613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1387568606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: ddbaf427bcf130545b869f72e1b5fc09, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 82fdc19c-399e-4135-8be4-4d152710c4fc
+    m_ActionName: PS4Controller/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 90a68f52-573c-424f-af92-a619f5f24933
+    m_ActionName: PS4Controller/Tag/Grab[/Keyboard/x]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: PS4Controller
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 2015539102}
 --- !u!43 &1466448754
 Mesh:
   m_ObjectHideFlags: 0
@@ -3978,7 +4036,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8448209047033118724, guid: a305f6feb182a8440b8097f76057bd00, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1924635998}
+    - targetCorrespondingSourceObject: {fileID: 8448209047033118724, guid: a305f6feb182a8440b8097f76057bd00, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1924636000}
   m_SourcePrefab: {fileID: 100100000, guid: a305f6feb182a8440b8097f76057bd00, type: 3}
 --- !u!4 &1508023618 stripped
 Transform:
@@ -3990,7 +4054,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2852929796057446110, guid: a305f6feb182a8440b8097f76057bd00, type: 3}
   m_PrefabInstance: {fileID: 1508023617}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1924635996}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cf8492a6c0ad6584aadca90412b1159b, type: 3}
@@ -5718,6 +5782,61 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &1924635996 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8448209047033118724, guid: a305f6feb182a8440b8097f76057bd00, type: 3}
+  m_PrefabInstance: {fileID: 1508023617}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1924635998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1924635996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc28274e4efcdbc4099dbd6a6b36a11b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1924636000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1924635996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: ddbaf427bcf130545b869f72e1b5fc09, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 82fdc19c-399e-4135-8be4-4d152710c4fc
+    m_ActionName: PS4Controller/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 90a68f52-573c-424f-af92-a619f5f24933
+    m_ActionName: PS4Controller/Tag/Grab[/Keyboard/x]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: PS4Controller
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 2015539102}
 --- !u!43 &1945730854
 Mesh:
   m_ObjectHideFlags: 0
@@ -6110,6 +6229,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8448209047033118724, guid: a305f6feb182a8440b8097f76057bd00, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2142653346}
+    - targetCorrespondingSourceObject: {fileID: 8448209047033118724, guid: a305f6feb182a8440b8097f76057bd00, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2142653347}
+    - targetCorrespondingSourceObject: {fileID: 8448209047033118724, guid: a305f6feb182a8440b8097f76057bd00, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2142653350}
   m_SourcePrefab: {fileID: 100100000, guid: a305f6feb182a8440b8097f76057bd00, type: 3}
 --- !u!4 &2142653342 stripped
 Transform:
@@ -6155,6 +6280,56 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2142653347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2142653343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc28274e4efcdbc4099dbd6a6b36a11b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2142653350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2142653343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: ddbaf427bcf130545b869f72e1b5fc09, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 82fdc19c-399e-4135-8be4-4d152710c4fc
+    m_ActionName: PS4Controller/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 90a68f52-573c-424f-af92-a619f5f24933
+    m_ActionName: PS4Controller/Tag/Grab[/Keyboard/x]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: PS4Controller
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 2015539102}
 --- !u!1001 &8068655543138670595
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6214,6 +6389,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8448209047033118724, guid: a305f6feb182a8440b8097f76057bd00, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8068655543138670600}
+    - targetCorrespondingSourceObject: {fileID: 8448209047033118724, guid: a305f6feb182a8440b8097f76057bd00, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8068655543138670601}
+    - targetCorrespondingSourceObject: {fileID: 8448209047033118724, guid: a305f6feb182a8440b8097f76057bd00, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8068655543138670604}
   m_SourcePrefab: {fileID: 100100000, guid: a305f6feb182a8440b8097f76057bd00, type: 3}
 --- !u!4 &8068655543138670596 stripped
 Transform:
@@ -6259,6 +6440,56 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8068655543138670601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8068655543138670597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc28274e4efcdbc4099dbd6a6b36a11b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8068655543138670604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8068655543138670597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: ddbaf427bcf130545b869f72e1b5fc09, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 82fdc19c-399e-4135-8be4-4d152710c4fc
+    m_ActionName: PS4Controller/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 90a68f52-573c-424f-af92-a619f5f24933
+    m_ActionName: PS4Controller/Tag/Grab[/Keyboard/x]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: PS4Controller
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 2015539102}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
