@@ -11,6 +11,11 @@ public class TagCollisionHandler : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log($"{gameObject.name} collided with {other.gameObject.name}");
+            gameController.OnPlayerCollision(other.GetComponent<PlayerMover>());
+        }
         // Ensure one is the chaser and the other is a player
         if (gameController == null || !gameController.IsGameRunning()) return;
 

@@ -89,77 +89,80 @@ public class GameController : MonoBehaviour
     private void EndGame()
     {
         gameRunning = false;
+        chasePopup.SetActive(false);
 
-        // Determine Winner
-        int remainingPlayers = players.Count - 1; // Exclude chaser
-        if (remainingPlayers > 0)
+        if (players.Count <= 1) // Only chaser remains
         {
-            winPopupText.text = "Players Win!";
+            winPopup.SetActive(true);
+            winPopupText.text = "Chaser Wins!";
+            Debug.Log("Chaser wins!");
         }
         else
         {
-            winPopupText.text = "Chaser Wins!";
+            winPopup.SetActive(true);
+            winPopupText.text = "Players Win!";
+            Debug.Log("Players win!");
         }
-
-        winPopup.SetActive(true);
     }
 
-    public void OnPlayerCollision(PlayerMover player)
+
+    public void OnPlayerCollision(PlayerMover chasedPlayer)
     {
-        if (!gameRunning || isTagging || player == chaser) return;
+        if (chasedPlayer == chaser || !gameRunning || isTagging) return;
 
+        // Start tagging coroutine
         isTagging = true;
+        StartCoroutine(HandleTagging(chasedPlayer));
+    }
 
-        // Show "Press X to Tag" Popup
+    private IEnumerator HandleTagging(PlayerMover chasedPlayer)
+    {
         tagPopup.SetActive(true);
         tagPopupText.text = "Press X to Tag!";
 
-        // Store the collided player temporarily
-        StartCoroutine(HandleTagging(player));
-    }
-    private IEnumerator HandleTagging(PlayerMover player)
-    {
-        // Freeze Both Players
-        DisablePlayerMovement(chaser, player);
+        // Freeze both players
+        DisablePlayerMovement(chaser, chasedPlayer);
 
-        float elapsedTime = 0f;
-        bool isTagged = false;
+        float tagTimer = 2f;
+        bool tagged = false;
 
-        while (elapsedTime < tagTimeWindow)
+        while (tagTimer > 0)
         {
-            elapsedTime += Time.deltaTime;
+            tagTimer -= Time.deltaTime;
 
-            // Check if the Chaser Presses X
-            if (tagActionReference.action.WasPerformedThisFrame())
+            // Check if X is pressed (Controller or Keyboard)
+            if (Input.GetKeyDown(KeyCode.JoystickButton0) || Input.GetKeyDown(KeyCode.X))
             {
-                isTagged = true;
+                tagged = true;
                 break;
             }
+
             yield return null;
         }
 
-        // Hide "Press X" Popup After 2 Seconds
+        // Hide the tag popup
         tagPopup.SetActive(false);
 
-        if (isTagged)
-        {
-            // Update Tag Popup for Successful Tag
-            tagPopup.SetActive(true);
-            tagPopupText.text = $"Player {player.GetPlayerIndex()} has been tagged!";
+        // Enable player movement again
+        EnablePlayerMovement(chaser, chasedPlayer);
 
-            // Eliminate Player After Delay
-            EliminatePlayer(player);
+        if (tagged)
+        {
+            Debug.Log($"{chasedPlayer.name} has been tagged!");
+            tagPopup.SetActive(true);
+            tagPopupText.text = $"{chasedPlayer.name} has been tagged!";
+            EliminatePlayer(chasedPlayer);
+
+            // Wait before hiding the popup
+            yield return new WaitForSeconds(2f);
+            tagPopup.SetActive(false);
         }
 
-        // Unfreeze Both Players After Tagging Process
-        EnablePlayerMovement(chaser, player);
-
-        // Hide Tag Popup After 2 Seconds
-        yield return new WaitForSeconds(2f);
-        tagPopup.SetActive(false);
-
+        // Reset tagging status
         isTagging = false;
     }
+
+
 
     // Helper Method to Disable Player Movement
     private void DisablePlayerMovement(params PlayerMover[] players)
@@ -202,6 +205,12 @@ public class GameController : MonoBehaviour
         {
             players.Remove(player);
             Destroy(player.gameObject);
+
+            // Check if only the chaser remains
+            if (players.Count == 1 && players.Contains(chaser))
+            {
+                EndGame();
+            }
         }
     }
 
